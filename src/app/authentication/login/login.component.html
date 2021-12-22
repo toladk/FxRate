@@ -1,0 +1,46 @@
+<div class="container" style="background-color: white; width: 100%;">
+    <div class="row " id="form-login">
+        <div class="panel-header" style="margin-top: 170px;">
+            <h2 class="text-center text-success" style="color: #4BA145;">
+                Sign in
+            </h2>
+            <p style="text-align: center; font-size: 25px; font-weight: 700; color: #4BA145;">Nibss FX Sales Portal</p>
+        </div>
+        <div class="panel-body social col-sm-offset-3">
+            <div class="col-xs-12 col-sm-8 ">
+                <form [formGroup]="loginForm">
+                    <div class="form-group" style="margin-bottom: 0px;">
+                        <div class="col-xs-9" style="margin-left: 70px;">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Please input your username!">
+                                    <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Username*</label>
+                                    <nz-input-group nzPrefixIcon="user">
+                                        <input type="text" formControlName="username" nz-input placeholder="Username" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0px;">
+                        <div class="col-xs-9" style="margin-left: 70px;">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Please input your username!">
+                                    <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Password*</label>
+                                    <nz-input-group nzPrefixIcon="eye">
+                                        <input type="password" formControlName="password" nz-input placeholder="Password" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div class="col-xs-9" style="margin-left: 70px; margin-top: 5px;">
+                        <button nzBlock nz-button nzType="primary" (click)="onSubmit()" [nzLoading]="isLoadingOne" style="background-color: #4BA145; border: #4BA145;">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row omb_row-sm-offset-3">
+                <div class="col-xs-12 col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+</div>

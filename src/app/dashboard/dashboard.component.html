@@ -1,0 +1,119 @@
+<!-- Content Header (Page header) -->
+<section class="content-header" style="margin-top: 60px;">
+    <!--section starts-->
+    <h1>Welcome To Dashboard</h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="index.html">
+                <i class="fa fa-fw fa-home"></i> Dashboard
+            </a>
+        </li>
+
+    </ol>
+</section>
+<!--section ends-->
+<section class="content">
+    <div class="row row-spacing">
+        <div class="col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="padding-top: 5px; padding-bottom: 5px; font-weight: 600;">
+                        Transaction
+                    </h3>
+                    <span class="pull-right">
+                <i class="fa fa-fw fa-chevron-up clickable"></i>
+            </span>
+                </div>
+                <div class="panel-body">
+                    <nz-table #basicTable [nzData]="allTransactionsList">
+                        <thead>
+                            <tr>
+                                <th nzLeft nzWidth="50px">#</th>
+                                <th nzLeft nzWidth="160px">Appicant Account No</th>
+                                <th nzWidth="160px">Beneficiary Account No</th>
+                                <th nzWidth="160px">Form A No</th>
+                                <th>Fx Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let list of basicTable.data; let i = index">
+                                <td nzLeft>{{ i+1 }}</td>
+                                <td nzLeft>{{ list.applicantAccountNo }}</td>
+                                <td>{{ list.beneficiaryAccountNo }}</td>
+                                <td>{{ list.formA }}</td>
+                                <td>{{ list.fxAmount }}</td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12" *ngFor="let list of allFxRateList">
+                    <div class="" *ngIf="list.currencyName === 'USD'" style="background-color: green; padding-top: 15px; padding-left: 15px; padding-bottom: 35px; padding-right: 15px; color: #fff; margin-bottom: 10px;">
+                        <div class="cd-timeline-content">
+                            <h5 style="color: #fff;">Rate For {{list.currencyName}}</h5>
+                            <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                                <div class="col-md-6" style="padding-left: 0px; display: flex;">
+                                    <div class="mr-5" style="font-size: 12px; margin-top: 3px;">Buying Amt:</div>
+                                    <div class="ml-5" style="font-weight: 600; color: #fff;">{{ list.buyingAmount }}</div>
+                                </div>
+                                <div class="col-md-6" style="padding-left: 0px; display: flex;">
+                                    <div class="mr-5" style="font-size: 12px; margin-top: 3px;">Selling Amt:</div>
+                                    <div class="ml-5" style="font-weight: 600; color: #fff;">{{ list.sellingAmount }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" *ngIf="list.currencyName === 'NGN'" style="background-color: #FFCC66; padding-top: 15px; padding-left: 15px; padding-bottom: 35px; padding-right: 15px; color: #fff; margin-bottom: 10px;">
+                        <div class="cd-timeline-content">
+                            <h5 style="color: #fff;">Rate For {{list.currencyName}}</h5>
+                            <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                                <div class="col-md-6" style="padding-left: 0px; display: flex;">
+                                    <div class="mr-5" style="font-size: 12px; margin-top: 3px;">Buying Amt:</div>
+                                    <div class="ml-5" style="font-weight: 600; color: #fff;">{{ list.buyingAmount }}</div>
+                                </div>
+                                <div class="col-md-6" style="padding-left: 0px; display: flex;">
+                                    <div class="mr-5" style="font-size: 12px; margin-top: 3px;">Selling Amt:</div>
+                                    <div class="ml-5" style="font-weight: 600; color: #fff;">{{ list.sellingAmount }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" *ngIf="list.currencyName === 'GBP'" style="background-color: #048968; padding-top: 15px; padding-left: 15px; padding-bottom: 35px; padding-right: 15px; color: #fff; margin-bottom: 10px;">
+                        <div class="cd-timeline-content">
+                            <h5 style="color: #fff;">Rate For {{list.currencyName}}</h5>
+                            <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                                <div class="col-md-6" style="padding-left: 0px; display: flex;">
+                                    <div class="mr-5" style="font-size: 12px; margin-top: 3px;">Buying Amt:</div>
+                                    <div class="ml-5" style="font-weight: 600; color: #fff;">{{ list.buyingAmount }}</div>
+                                </div>
+                                <div class="col-md-6" style="padding-left: 0px; display: flex;">
+                                    <div class="mr-5" style="font-size: 12px; margin-top: 3px;">Selling Amt:</div>
+                                    <div class="ml-5" style="font-weight: 600; color: #fff;">{{ list.sellingAmount }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" *ngIf="list.currencyName === 'EUR'" style="background-color: #1C8CB5; padding-top: 15px; padding-left: 15px; padding-bottom: 35px; padding-right: 15px; color: #fff; margin-bottom: 10px;">
+                        <div class="cd-timeline-content">
+                            <h5 style="color: #fff;">Rate For {{list.currencyName}}</h5>
+                            <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                                <div class="col-md-6" style="padding-left: 0px; display: flex;">
+                                    <div class="mr-5" style="font-size: 12px; margin-top: 3px;">Buying Amt:</div>
+                                    <div class="ml-5" style="font-weight: 600; color: #fff;">{{ list.buyingAmount }}</div>
+                                </div>
+                                <div class="col-md-6" style="padding-left: 0px; display: flex;">
+                                    <div class="mr-5" style="font-size: 12px; margin-top: 3px;">Selling Amt:</div>
+                                    <div class="ml-5" style="font-weight: 600; color: #fff;">{{ list.sellingAmount }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->

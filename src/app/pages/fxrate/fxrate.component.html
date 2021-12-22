@@ -1,0 +1,116 @@
+<section class="content-header" style="margin-top: 60px;">
+    <ol class="breadcrumb">
+        <li>
+            <a routerLink="/app/dashboard">
+                <i class="fa fa-fw fa-home"></i> Dashboard
+            </a>
+        </li>
+        <li>
+            <a routerLink="/app/fxrate">FxRate</a>
+        </li>
+    </ol>
+</section>
+
+
+<section class="content">
+    <div class="row row-spacing">
+        <div class="col-lg-12 col-md-12">
+            <div class="" style="float: right; margin-bottom: 15px;" *ngIf="permissionList.indexOf('CANLOGTRANSACTION') > -1">
+                <a class="btn btn-success" role="button" (click)="openFxRate()">
+                    <span class="glyphicon glyphicon-plus"></span> New FxRate
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="padding-top: 5px; padding-bottom: 5px; font-weight: 600;">
+                        FX Rate
+                    </h3>
+                    <span class="pull-right">
+                  <i class="fa fa-fw fa-chevron-up clickable"></i>
+              </span>
+                </div>
+                <div class="panel-body">
+                    <nz-table #basicTable [nzData]="allFxRateList">
+                        <thead>
+                            <tr>
+                                <th nzLeft nzWidth="50px">#</th>
+                                <th nzLeft nzWidth="160px">Currency</th>
+                                <th nzWidth="160px">Buying Amount</th>
+                                <th nzWidth="160px">Selling Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let list of basicTable.data; let i = index">
+                                <td nzLeft>{{ i+1 }}</td>
+                                <td nzLeft>{{ list.currencyName }}</td>
+                                <td>{{ list.buyingAmount }}</td>
+                                <td>{{ list.sellingAmount }}</td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#right -->
+</section>
+
+
+
+<!--Drawer for adding FxRate-->
+<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzMaskClosable]="true" [nzWidth]="720" [nzVisible]="visibleFxRate" nzTitle="New Fx Rate" [nzFooter]="footerTpl" (nzOnClose)="closeFxRate()">
+    <form nz-form *nzDrawerContent [formGroup]="fxRateForm">
+        <div class="row row-spacing">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please select currency!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Currency*</label>
+                                <nz-select style="width: 100%;" formControlName="currencyID" nzShowSearch nzAllowClear nzPlaceHolder="Select Currency">
+                                    <nz-option *ngFor="let list of allCurrencyList" [nzValue]="list.id" [nzLabel]="list.description"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-6" style="padding-left: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please input BVN!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Buying Amount*</label>
+                                <nz-input-group nzSearch>
+                                    <input type="number" formControlName="buyingAmount" nz-input placeholder="Enter Buying Amount" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div class="col-xs-6" style="padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please input BVN!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Selling Amount*</label>
+                                <nz-input-group nzSearch>
+                                    <input type="number" formControlName="sellingAmount" nz-input placeholder="Enter Selling Amount" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <ng-template #footerTpl>
+        <div style="float: right">
+            <button nz-button style="margin-right: 8px;" (click)="closeFxRate()">Cancel</button>
+            <button nz-button nzType="primary" [disabled]="!fxRateForm.valid" style="background-color: #4BA145; border: #4BA145;" [nzLoading]="isLoadingSub" nz-popconfirm nzPopconfirmTitle="Have you confirmed the current rate?" (nzOnConfirm)="submitFxRate()" (nzOnCancel)="cancelFxRate()">Submit</button>
+        </div>
+    </ng-template>
+
+</nz-drawer>

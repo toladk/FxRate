@@ -1,0 +1,166 @@
+<header class="header" style="position: fixed; width: 100%; z-index: 4;">
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="index.html" class="logo" style="margin-left: 10px;">
+            <!-- Add the class icon to your logo image or logo icon to add the marginin -->
+            <img src="assets/img/logoqq.png" alt="logo" style="width: 180px; height: 50px;" />
+        </a>
+        <!-- Header Navbar: style can be found in header-->
+        <!-- Sidebar toggle button-->
+        <!-- <div>
+          <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button"> <i class="fa fa-fw fa-hand-o-left"></i>
+          </a>
+      </div> -->
+        <div class="navbar-right">
+            <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown-->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle padding-user" data-toggle="dropdown">
+                        <img src="assets/img/user1.jpg" width="35" class="img-circle img-responsive pull-left" height="35" alt="User Image">
+                        <div class="riot">
+                            <div>
+                                {{ username }}
+                                <span>
+                                <i class="caret"></i>
+                            </span>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="assets/img/user1.jpg" class="img-circle" alt="User Image">
+                            <p style="margin-bottom: 0px; margin-top: 5px;">{{ username }}</p>
+                            <h6 style="color: #fff;">{{ email }}</h6>
+                        </li>
+                        <!-- Menu Body -->
+                        <!-- <li class="pad-3">
+                            <a href="user_profile.html">
+                                <i class="fa fa-fw fa-user"></i> My Profile
+                            </a>
+                        </li>
+                        <li role="presentation"></li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-fw fa-gear"></i> Account Settings
+                            </a>
+                        </li> -->
+                        <li role="presentation" class="divider"></li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <!-- <div class="pull-left">
+                                <a href="lockscreen.html">
+                                    <i class="fa fa-fw fa-lock"></i> Lock
+                                </a>
+                            </div> -->
+                            <div class="pull-right">
+                                <a (click)="logout()" style="color: #4BA145;">
+                                    <i class="fa fa-fw fa-sign-out"></i> Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<div class="wrapper row-offcanvas row-offcanvas-left">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="left-side sidebar-offcanvas" style="position: fixed">
+        <!-- sidebar: style can be found in sidebar-->
+        <section class="sidebar">
+            <div id="menu" role="navigation">
+                <!-- <div class="nav_profile">
+                    <div class="media profile-left">
+                        <a class="pull-left profile-thumb" href="#">
+                            <img src="assets/img/authors/avatar1.jpg" class="img-circle" alt="User Image"></a>
+                        <div class="content-profile">
+                            <h4 class="media-heading">Nataliapery</h4>
+                            <ul class="icon-list">
+                                <li>
+                                    <a href="users.html">
+                                        <i class="fa fa-fw fa-user"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="lockscreen.html">
+                                        <i class="fa fa-fw fa-lock"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-fw fa-gear"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="login.html">
+                                        <i class="fa fa-fw fa-sign-out"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+                <ul class="navigation" style="margin-top: 30px;">
+                    <li>
+                        <a routerLink="dashboard">
+                            <i class="menu-icon fa fa-fw fa-home"></i>
+                            <span class="mm-text ">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="transaction">
+                            <i class="menu-icon fa fa-fw fa-repeat"></i>
+                            <span class="mm-text ">Transaction</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="fxrate">
+                            <i class="menu-icon fa fa-fw fa-check"></i>
+                            <span class="mm-text ">Fx Rate</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="report">
+                            <i class="menu-icon fa fa-fw fa-file-text"></i>
+                            <span class="mm-text ">Report</span>
+                        </a>
+                    </li>
+                    <!-- <li class="menu-dropdown ">
+                        <a href="charts.html">
+                            <i class="menu-icon fa fa-bar-chart-o"></i>
+                            <span>Charts</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a routerLink="transaction">
+                                    <i class="fa fa-fw fa-area-chart"></i> Flot Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a href="nvd3_charts.html">
+                                    <i class="fa fa-fw fa-line-chart"></i> NVD3 Charts
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chartjs_charts.html">
+                                    <i class="menu-icon fa fa-bar-chart-o"></i> Chart js
+                                </a>
+                            </li>
+                        </ul>
+                    </li> -->
+                </ul>
+                <!-- / .navigation -->
+            </div>
+            <!-- menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <aside class="right-side right-padding">
+        <router-outlet></router-outlet>
+    </aside>
+    <!-- /.right-side -->
+</div>

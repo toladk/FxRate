@@ -1,0 +1,52 @@
+<div class="container" style="background-color: white; width: 100%;">
+    <div class="row " id="form-login">
+        <div class="panel-header" style="margin-top: 190px;">
+            <h2 class="text-center text-success" style="color: #4BA145;">
+                Enter your token !!
+            </h2>
+        </div>
+        <div class="panel-body social col-sm-offset-3">
+            <div class="col-xs-12 col-sm-8 ">
+                <form [formGroup]="twoFactorForm">
+                    <div class="form-group" style="margin-bottom: 0px;">
+                        <div class="col-xs-9" style="margin-left: 70px;">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Please input your username!">
+                                    <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Token*</label>
+                                    <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                                        <div class="col-md-3" style="padding-left: 0px;">
+                                            <nz-input-group>
+                                                <input type="text" formControlName="token1" maxlength="2" nz-input placeholder="--" #input1 (keyup)="(input1.value.length == 2) ? input2.focus() : ''" style="text-align: center;" />
+                                            </nz-input-group>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nz-input-group>
+                                                <input type="text" formControlName="token2" maxlength="2" nz-input placeholder="--" #input2 (keyup)="(input2.value.length == 2) ? input3.focus() : ''" style="text-align: center;" />
+                                            </nz-input-group>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nz-input-group>
+                                                <input type="text" formControlName="token3" maxlength="2" nz-input placeholder="--" #input3 (keyup)="(input3.value.length == 2) ? input4.focus() : ''" style="text-align: center;" />
+                                            </nz-input-group>
+                                        </div>
+                                        <div class="col-md-3" style="padding-right: 0px;">
+                                            <nz-input-group>
+                                                <input type="text" formControlName="token4" maxlength="2" nz-input placeholder="--" #input4 style="text-align: center;" />
+                                            </nz-input-group>
+                                        </div>
+                                    </div>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div class="col-xs-9" style="margin-left: 70px; margin-top: 5px;">
+                        <button nzBlock nz-button nzType="primary" (click)="onSubmit()" [nzLoading]="isLoadingOne" style="background-color: #4BA145; border: #4BA145;">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row omb_row-sm-offset-3">
+                <div class="col-xs-12 col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+</div>

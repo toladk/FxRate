@@ -1,0 +1,208 @@
+<section class="content-header" style="margin-top: 60px;">
+    <ol class="breadcrumb">
+        <li>
+            <a routerLink="/app/dashboard">
+                <i class="fa fa-fw fa-home"></i> Dashboard
+            </a>
+        </li>
+        <li>
+            <a routerLink="/app/report">Report</a>
+        </li>
+    </ol>
+</section>
+
+<section class="content">
+    <!-- <div class="col-md-12">
+        <h4 style="text-align: center; margin-top: 20px; color: tomato;">Fill the required field to get transaction data</h4>
+    </div> -->
+    <form [formGroup]="reportForm">
+        <div class="row row-spacing" style="margin-bottom: 0px;">
+            <div class="col-lg-2 col-md-2" style="margin-top: 20px;">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please input branch ID!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Sol ID<span style="color: tomato;">*</span></label>
+                                <nz-input-group>
+                                    <input type="text" formControlName="branchID" nz-input placeholder="Enter Branch ID" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3" style="margin-top: 20px;">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please select transaction type!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Transaction Type<span style="color: tomato;">*</span></label>
+                                <nz-select style="width: 100%;" formControlName="transactionType" nzShowSearch nzAllowClear nzPlaceHolder="Select Transaction Type">
+                                    <nz-option *ngFor="let list of allTransactionTypeList" [nzValue]="list.id" [nzLabel]="list.shortName"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3" style="margin-top: 20px;">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please select applicant bank!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Status<span style="color: tomato;">*</span></label>
+                                <nz-select style="width: 100%;" formControlName="status" nzShowSearch nzAllowClear nzPlaceHolder="Select Status">
+                                    <nz-option nzValue="1" nzLabel="Pending"></nz-option>
+                                    <nz-option nzValue="3" nzLabel="Approved"></nz-option>
+                                    <nz-option nzValue="2" nzLabel="Declined"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4" style="margin-top: 45px;">
+                <div class="" style="float: right;">
+                    <button nz-button nzType="primary" (click)="resetFilter()" style="margin-right: 15px; background-color: tomato; border: tomato;">Reset</button>
+                    <button nz-button nzType="primary" (click)="getReport()" [nzLoading]="isLoadingOne">Get Transactions</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-spacing">
+            <div class="col-lg-3 col-md-3">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please input date!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Created Between Start Date</label>
+                                <nz-input-group>
+                                    <input type="date" formControlName="createdOnStart" nz-input placeholder="" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please input date!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Created Between End Date</label>
+                                <nz-input-group>
+                                    <input type="date" formControlName="createdOnEnd" nz-input placeholder="" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please input date!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Approved Between Start Date</label>
+                                <nz-input-group>
+                                    <input type="date" formControlName="transmittedOnStart" nz-input placeholder="" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="form-group" style="margin-bottom: 0px;">
+                    <div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please input date!">
+                                <label class="form-label" style="font-weight: 600; color: darkslategray; margin-bottom: 8px;">Approved Between End Date</label>
+                                <nz-input-group>
+                                    <input type="date" formControlName="transmittedOnEnd" nz-input placeholder="" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- /#right -->
+</section>
+
+<section class="content">
+    <div class="row row-spacing">
+        <div class="col-lg-12 col-md-12">
+            <div class="col-md-6" style="padding-left: 0px; margin-bottom: 20px;">
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                    <input type="text" nz-input [(ngModel)]="searchValue" placeholder="Search Table" />
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                    <i nz-icon nzType="search"></i>
+                </ng-template>
+            </div>
+            <div class="col-md-6" style="padding-left: 0px; margin-bottom: 20px;" *ngIf="showDownload">
+                <div class="" style="float: right;">
+                    <button nz-button nzType="primary" (click)="DownloadReport()">Download Report</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="padding-top: 5px; padding-bottom: 5px; font-weight: 600;">
+                        Transaction
+                    </h3>
+                    <span class="pull-right">
+                  <i class="fa fa-fw fa-chevron-up clickable"></i>
+              </span>
+                </div>
+                <div class="panel-body">
+                    <nz-table #columnTable [nzData]="reportDetailsList" [nzScroll]="{ x: '1130px' }">
+                        <thead>
+                            <tr>
+                                <th nzLeft nzWidth="50px">#</th>
+                                <th nzLeft nzWidth="160px">Appicant Account No</th>
+                                <th nzWidth="160px">Appicant Full Name</th>
+                                <th nzWidth="160px">Appicant Address</th>
+                                <th nzWidth="160px">Beneficiary Account No</th>
+                                <th nzWidth="160px">Form A No</th>
+                                <th nzWidth="160px">FX Amount</th>
+                                <th nzWidth="160px">Purchase Type</th>
+                                <th nzWidth="160px">Transaction Type</th>
+                                <th nzWidth="160px">Purpose</th>
+                                <th nzWidth="160px">Tax Cert No</th>
+                                <th nzWidth="160px">Status</th>
+                                <th nzWidth="160px">Is Customer</th>
+                                <th nzRight nzWidth="160px">Is Cash Transfer</th>
+                                <th nzRight nzWidth="160px">Created On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let list of columnTable.data | reportfilter: searchValue; let i = index">
+                                <td nzLeft>{{ i+1 }}</td>
+                                <td nzLeft>{{ list.applicantAccountNo }}</td>
+                                <td>{{ list.applicantFullName }}</td>
+                                <td>{{ list.applicantAddress }}</td>
+                                <td>{{ list.beneficiaryAccountNo }}</td>
+                                <td>{{ list.formA }}</td>
+                                <td>{{ list.fxAmount }}</td>
+                                <td>{{ list.purchaseType }}</td>
+                                <td>{{ list.transactionType }}</td>
+                                <td>{{ list.purpose }}</td>
+                                <td>{{ list.taxCertNo }}</td>
+                                <td>{{ list.statusText }}</td>
+                                <td>{{ list.isCustomer }}</td>
+                                <td nzRight>{{ list.isCashTranx }}</td>
+                                <td nzRight>{{ list.createdOn | date: 'medium' }}</td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#right -->
+</section>
